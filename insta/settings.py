@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user.apps.UserConfig',
+    'relation.apps.RelationConfig',
+    'location.apps.LocationConfig',
+    'content.apps.ContentConfig',
+    'activities.apps.ActivitiesConfig'
+
 ]
 
 MIDDLEWARE = [
@@ -70,7 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'insta.wsgi.application'
-
+AUTH_USER_MODEL='user.User'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
