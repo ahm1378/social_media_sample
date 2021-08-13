@@ -10,9 +10,10 @@ user_model=get_user_model()
 
 
 class Post(BaseModel):
-    caption=models.TextField(_("caption"),blank=True)
-    user=models.ForeignKey(user_model,related_name="posts",on_delete=models.CASCADE)
-    location=models.ForeignKey(Location,related_name="posts",on_delete=models.CASCADE)
+    title = models.CharField(_("title") , max_length=400)
+    caption = models.TextField(_("caption"), blank=True)
+    user = models.ForeignKey(user_model, related_name="posts", on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, related_name="posts", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.caption
@@ -23,15 +24,15 @@ class Post(BaseModel):
 
 
 class PostMedia(BaseModel):
-    IMAGE=0
-    VIDEO=1
-    post=models.ForeignKey(Post,related_name="medias",on_delete=models.CASCADE)
-    file_media=models.FileField(_("media file"),upload_to='post/files')
+    IMAGE = 0
+    VIDEO = 1
+    post = models.ForeignKey(Post, related_name="medias", on_delete=models.CASCADE)
+    file_media = models.FileField(_("media file"), upload_to='post/files')
     choices=(
-        (IMAGE,_("image")),
-        (VIDEO,_("Video"))
+        (IMAGE, _("image")),
+        (VIDEO, _("Video"))
     )
-    type_choice=models.SmallIntegerField(_("media"),choices=choices)
+    type_choice=models.SmallIntegerField(_("media"), choices=choices)
     def __str__(self):
         return self.post.caption
 
@@ -41,7 +42,7 @@ class PostMedia(BaseModel):
 
 
 class Tag(BaseModel):
-    title=models.CharField(_("title"),max_length=50)
+    title = models.CharField(_("title"), max_length=50)
 
     def __str__(self):
         return self.title

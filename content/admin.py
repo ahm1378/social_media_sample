@@ -1,15 +1,28 @@
 from django.contrib import admin
-from content.models import Post,PostTag,Tag,PostMedia
+from content.models import Post, PostTag, Tag, PostMedia, UserTag
+
+
 # Register your models here.
 
+class PostTagInline(admin.TabularInline):
+    model = PostTag
+    extra = 1
+
+
+class PostMediaInline(admin.TabularInline):
+    model = PostMedia
+    extra = 1
+
+
+class UserTage(admin.TabularInline):
+    model = UserTag
+    extra = 1
+
+
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['caption','user']
+    list_display = ['title', 'user']
+    inlines = [UserTage, PostTagInline, PostMediaInline]
 
-class PostMediaAdmin(admin.ModelAdmin):
-    list_display = ['file_media','post']
-    list_filter = ['file_media']
 
-admin.site.register(Post,PostAdmin)
-admin.site.register(PostTag)
-admin.site.register(Tag)
-admin.site.register(PostMedia,PostMediaAdmin)
+admin.site.register(Post, PostAdmin)
+

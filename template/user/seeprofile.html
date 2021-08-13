@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ object.username }}</h1>
+<p> bio : {{ object.bio }}</p>
+<p>Website: {{ object.website }}</p>
+<p>phone_number: {{ object.phone_number }}</p>
+<p>posts: {{ post_count }}</p>
+<p>followers: {{ followers_count }}</p>
+<div>
+    follower:
+    <ul>
+    {% for i in user_name_followers %}
+        <li> <a href="{% url 'detail' username=i.username %}"> {{ i.username }}</a> </li>
+
+
+    {% endfor %}
+    </ul>
+</div>
+
+<div>
+    followings:
+    <ul>
+    {% for i in user_name_followings %}
+        <li> <a href="{% url 'detail' username=i.username %}"> {{ i.username }}</a> </li>
+
+
+    {% endfor %}
+    </ul>
+</div>
+
+
+
+<p>followings: {{ followings_count }}</p>
+<div>
+    <form action="{% url 'follow_unfollow' username=object.username %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="{% if FollowFlag %} Unfollow {% else %} Follow {% endif %}">
+    </form>
+</div>
+</body>
+</html>
