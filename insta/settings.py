@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'relation.apps.RelationConfig',
     'location.apps.LocationConfig',
     'content.apps.ContentConfig',
-    'activities.apps.ActivitiesConfig'
+    'activities.apps.ActivitiesConfig',
+    'rest_framework'
 
 ]
 
