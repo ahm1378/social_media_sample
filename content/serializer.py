@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from content.models import Post, PostMedia
 from user.api.serialize import UsserSerializeLight
 from location.serializer import LocationSerializer
@@ -18,4 +17,4 @@ class Postserializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['title', 'caption','user', 'location', 'medias']
+        fields = ['title', 'caption', 'user', 'location', 'medias']

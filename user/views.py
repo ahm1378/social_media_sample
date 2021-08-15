@@ -1,5 +1,5 @@
 from django.views.generic import FormView, UpdateView, DetailView
-from user.utils import find_user_byid_followers,find_user_byid_followering
+from user.utils import find_user_byid_followers, find_user_byid_followering
 from relation.models import Relation
 from user.forms import RegisterForm, LoginForm
 from django.shortcuts import render
@@ -54,12 +54,9 @@ class UserDetail(DetailView):
         content['post_count'] = user.posts.count()
         content['followers_count'] = user.followers.count()
         content['followings'] = user.followings.values()
-        content['followers']=user.followers.values()
+        content['followers'] = user.followers.values()
         content['followers_count'] = user.followers.count()
         content['user_name_followers'] = find_user_byid_followers(content, User)
-        content['user_name_followings']=find_user_byid_followering(content,User)
-        content['FollowFlag'] = Relation.objects.filter(from_user=self.request.user,to_user=user).exists()
-
+        content['user_name_followings'] = find_user_byid_followering(content, User)
+        content['FollowFlag'] = Relation.objects.filter(from_user=self.request.user, to_user=user).exists()
         return content
-
-

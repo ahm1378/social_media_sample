@@ -1,11 +1,13 @@
-from django.core.validators import  RegexValidator
+from django.core.validators import RegexValidator
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, UnicodeUsernameValidator, UserManager, \
     PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
-class User(AbstractBaseUser,PermissionsMixin):
+
+
+class User(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
     username = models.CharField(
         _('username'),
@@ -18,13 +20,11 @@ class User(AbstractBaseUser,PermissionsMixin):
         },
     )
     email = models.EmailField(_('email address'), blank=True)
-    phone_number=models.CharField(_("phone number"),max_length=11,blank=True)
-    avatar=models.ImageField(upload_to='users/avatat',blank=True)
-    bio=models.TextField(_("bio"),blank=True)
-    website=models.URLField(_("website"),blank=True)
-    is_verified=models.BooleanField(_("is_verified"),default=False)
-
-
+    phone_number = models.CharField(_("phone number"), max_length=11, blank=True)
+    avatar = models.ImageField(upload_to='users/avatat', blank=True)
+    bio = models.TextField(_("bio"), blank=True)
+    website = models.URLField(_("website"), blank=True)
+    is_verified = models.BooleanField(_("is_verified"), default=False)
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -44,6 +44,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
+
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')

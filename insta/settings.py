@@ -64,7 +64,7 @@ ROOT_URLCONF = 'insta.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"template")],
+        'DIRS': [os.path.join(BASE_DIR, "template")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +78,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'insta.wsgi.application'
-AUTH_USER_MODEL='user.User'
+AUTH_USER_MODEL = 'user.User'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -87,10 +87,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': DATABASE_NAME,
-        'PASSWORD':PASSWORD,
-        'HOST':HOST,
-        "USER":USER_NAME,
-        "PORT":PORT
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
+        "USER": USER_NAME,
+        "PORT": PORT
     }
 }
 
@@ -133,11 +133,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL= '/media/'
+MEDIA_URL = '/media/'
 
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 BROKER_URL = 'redis://localhost:6379'
