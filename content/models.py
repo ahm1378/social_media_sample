@@ -10,7 +10,7 @@ user_model=get_user_model()
 
 
 class Post(BaseModel):
-    title = models.CharField(_("title") , max_length=400)
+    title = models.CharField(_("title"), max_length=400)
     caption = models.TextField(_("caption"), blank=True)
     user = models.ForeignKey(user_model, related_name="posts", on_delete=models.CASCADE)
     location = models.ForeignKey(Location, related_name="posts", on_delete=models.CASCADE, null=True)
@@ -33,6 +33,7 @@ class PostMedia(BaseModel):
         (VIDEO, _("Video"))
     )
     type_choice=models.SmallIntegerField(_("media"), choices=choices)
+
     def __str__(self):
         return self.post.caption
 
@@ -58,18 +59,18 @@ class UserTag(models.Model):
 
     def __str__(self):
         return self.user.username
+
     class Meta :
         verbose_name = _('usertag')
         verbose_name_plural = _('tagged_users')
 
 
 class PostTag(BaseModel):
-    post=models.ForeignKey(Post,related_name="posttags",on_delete=models.CASCADE)
-    tag=models.ForeignKey(Tag,related_name="posttags",on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="posttags", on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, related_name="posttags", on_delete=models.CASCADE)
 
     def __str__(self):
-        return  self.post.tag
-
+        return self.post.tag
 
     class Meta :
         verbose_name = _('postag')
