@@ -1,5 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
+
+
 User = get_user_model()
 
 
@@ -21,7 +23,8 @@ class RegisterForm(forms.Form):
         return self.cleaned_data
 
     def save(self):
-        return User.objects.create_user(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
+        user = User.objects.create_user(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
+        return user
 
 
 class LoginForm(forms.Form):
